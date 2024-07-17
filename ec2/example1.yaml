@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"  # Specifies the CloudFormation template format version
 
 Description: A simple EC2 instance with a name tag
-
 # Parameters section defines input values for the template
 
 Parameters:
@@ -49,6 +48,13 @@ Outputs:
   InstanceId:
     Description: The ID of the launched EC2 instance
     Value: !Ref MyEc2Instance
-  InstanceName:  # New output to display the assigned name
-    Description: The name assigned to the EC2 instance through tag (may not be displayed directly)
-    Value: !Ref MyTags  # This should be corrected to !Ref MyEc2Instance.Tags[0].Value
+
+
+
+# aws cloudformation create-stack \
+#     --template-body file://ec2/example1.yaml \
+#     --stack-name my-ec2-instance-stack \
+#     --parameters ParameterKey=MyInstanceType,ParameterValue=t2.micro \
+#                 ParameterKey=MyKeyName,ParameterValue=jenkins \
+#                 ParameterKey=MySecurityGroup,ParameterValue=sg-0c5b1b4d1abd94345 \
+#                 ParameterKey=MySubnetId,ParameterValue=subnet-09665b03d52ce3b2e
